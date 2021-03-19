@@ -1,0 +1,49 @@
+{
+    "name": "tcgunel/xml-aligner",
+    "description": "Converts small/large xml files by the data structure of given array with minimum memory consumption.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tolga Can GÜNEL",
+            "email": "info@mobius.studio"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "illuminate/support": "*",
+        "ext-xmlwriter": "*",
+        "ext-simplexml": "*",
+        "ext-xmlreader": "*"
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "TCGunel\\XmlAligner\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TCGunel\\XmlAligner\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "XmlAlignerServiceProvider"
+            ],
+            "aliases": {
+                "XmlAligner": "XmlAligner"
+            }
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/paratest --processes 6",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "orchestra/testbench": "*",
+        "brianium/paratest": "*"
+    }
+}
