@@ -2,6 +2,7 @@
 
 namespace TCGunel\XmlAligner\Tests\Unit;
 
+use Illuminate\Support\Facades\Storage;
 use TCGunel\XmlAligner\XmlAligner;
 use TCGunel\XmlAligner\Tests\TestCase;
 
@@ -59,8 +60,15 @@ class XmlAlignerTest extends TestCase
 
         $instance = new XmlAligner();
 
-        $xml_file    = __DIR__ . '/../../storage/public/test.xml';
-        $output_path = __DIR__ . '/../../storage/public/outputs/';
+        $xml_file = __DIR__ . '/../../storage/app/public/tests/source.xml';
+
+        if ( ! Storage::disk("local")->exists("public/tests/")) {
+
+            Storage::disk("local")->makeDirectory("public/tests");
+
+        }
+
+        $output_path = Storage::disk("local")->path("public/tests/");
 
         $result = $instance
             ->setDataStructure($format)
@@ -68,7 +76,10 @@ class XmlAlignerTest extends TestCase
             ->setOutputPath($output_path)
             ->convert();
 
-        $this->assertFileExists($instance->getOutputPath() . $instance->getOutputFileName());
+        $this->assertXmlFileEqualsXmlFile(
+            $instance->getNewXmlFullPath(),
+            __DIR__ . '/../../storage/app/public/tests/target.xml'
+        );
         $this->assertTrue($result);
     }
 }
