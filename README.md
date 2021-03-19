@@ -1,7 +1,6 @@
 [![License](https://poser.pugx.org/tcgunel/netgsm/license)](https://packagist.org/packages/tcgunel/netgsm)
 [![Buy us a tree](https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-lightgreen)](https://plant.treeware.earth/tcgunel/netgsm)
-
-[comment]: <> ([![PHP Composer]&#40;https://github.com/tcgunel/netgsm/actions/workflows/laravel7-tests.yml/badge.svg&#41;]&#40;https://github.com/tcgunel/netgsm/actions/workflows/laravel7-tests.yml&#41;)
+[![PHP Composer](https://github.com/tcgunel/xml-aligner/actions/workflows/tests.yml/badge.svg)](https://github.com/tcgunel/xml-aligner/actions/workflows/tests.yml)
 
 [comment]: <> ([![PHP Composer]&#40;https://github.com/tcgunel/netgsm/actions/workflows/laravel8-tests.yml/badge.svg&#41;]&#40;https://github.com/tcgunel/netgsm/actions/workflows/laravel8-tests.yml&#41;)
 
