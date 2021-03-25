@@ -226,7 +226,7 @@ class XmlAligner
 
         } else {
 
-            if (strpos($node_value, '[]') !== false) {
+            if (strpos($node_value, '[]') !== false && is_array($value_pointer->$node_key) && !empty($value_pointer->$node_key)) {
 
                 $clean_node_name = str_replace('[]', '', $node_value);
 
