@@ -68,12 +68,12 @@ class XmlAlignerTest extends TestCase
 
         }
 
-        $output_path = Storage::disk("local")->path("public/tests/");
+        $output_path = Storage::disk("local")->path("public/tests/output.xml");
 
         $result = $instance
             ->setDataStructure($format)
             ->setValidXmlFilePath($xml_file)
-            ->setOutputPath($output_path)
+            ->setOutputFilePath($output_path)
             ->convert();
 
         $this->assertXmlFileEqualsXmlFile(

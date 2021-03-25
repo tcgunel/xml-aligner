@@ -16,13 +16,9 @@ class XmlAligner
 
     public $valid_xml_file_path;
 
-    protected $file_hash;
-
     protected $new_xml_full_path;
 
-    public $output_path;
-
-    public $output_file_name;
+    public $output_file_path;
 
     public function getDataStructure(): Collection
     {
@@ -61,14 +57,6 @@ class XmlAligner
     /**
      * @return mixed
      */
-    public function getFileHash()
-    {
-        return $this->file_hash;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getNewXmlFullPath()
     {
         return $this->new_xml_full_path;
@@ -82,18 +70,6 @@ class XmlAligner
     public function setNewXmlFullPath($new_xml_full_path): XmlAligner
     {
         $this->new_xml_full_path = $new_xml_full_path;
-
-        return $this;
-    }
-
-    /**
-     * @param $file_path
-     *
-     * @return XmlAligner
-     */
-    public function setFileHash($file_path): XmlAligner
-    {
-        $this->file_hash = hash_file('sha1', $file_path);
 
         return $this;
     }
@@ -121,45 +97,23 @@ class XmlAligner
     /**
      * @return string
      */
-    public function getOutputPath(): string
+    public function getOutputFilePath(): string
     {
-        return $this->output_path;
+        return $this->output_file_path;
     }
 
     /**
-     * @param mixed $output_path
+     * @param mixed $output_file_path
      */
-    public function setOutputPath(string $output_path): XmlAligner
+    public function setOutputFilePath(string $output_file_path): XmlAligner
     {
-        $this->output_path = $output_path;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getOutputFileName(): string
-    {
-        return $this->output_file_name;
-    }
-
-    /**
-     * @param mixed $output_file_name
-     *
-     * @return XmlAligner
-     */
-    public function setOutputFileName(string $output_file_name): XmlAligner
-    {
-        $this->output_file_name = $output_file_name;
+        $this->output_file_path = $output_file_path;
 
         return $this;
     }
 
     public function readXmlFile(): XmlAligner
     {
-        $this->setFileHash($this->getValidXmlFilePath());
-
         $xml = new XMLReader();
 
         $xml->open($this->getValidXmlFilePath());
@@ -171,9 +125,7 @@ class XmlAligner
 
     public function createNewXmlFile()
     {
-        $this->setOutputFileName($this->getFileHash() . ".xml");
-
-        $xmlFile = $this->getOutputPath() . $this->getOutputFileName();
+        $xmlFile = $this->getOutputFilePath();
 
         $this->setNewXmlFullPath($xmlFile);
 
