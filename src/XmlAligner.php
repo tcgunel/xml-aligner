@@ -226,15 +226,19 @@ class XmlAligner
 
         } else {
 
-            if (strpos($node_value, '[]') !== false && is_array($value_pointer->$node_key) && !empty($value_pointer->$node_key)) {
+            if (strpos($node_value, '[]') !== false) {
 
-                $clean_node_name = str_replace('[]', '', $node_value);
+                if (isset($value_pointer->$node_key) && count($value_pointer->$node_key)){
 
-                foreach ($value_pointer->$node_key as $ea) {
+                    $clean_node_name = str_replace('[]', '', $node_value);
 
-                    $xmlWriter->startElement($clean_node_name);
-                    $xmlWriter->writeCdata((string)$ea);
-                    $xmlWriter->endElement();
+                    foreach ($value_pointer->$node_key as $ea) {
+
+                        $xmlWriter->startElement($clean_node_name);
+                        $xmlWriter->writeCdata((string)$ea);
+                        $xmlWriter->endElement();
+
+                    }
 
                 }
 

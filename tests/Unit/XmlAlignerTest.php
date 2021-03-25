@@ -77,7 +77,7 @@ class XmlAlignerTest extends TestCase
             ->convert();
 
         $this->assertXmlFileEqualsXmlFile(
-            $instance->getNewXmlFullPath(),
+            $output_path,
             __DIR__ . '/../../storage/app/public/tests/target.xml'
         );
         $this->assertTrue($result);
