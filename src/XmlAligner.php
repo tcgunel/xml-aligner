@@ -246,13 +246,9 @@ class XmlAligner
 
                 $value = $value_pointer ? (string)$value_pointer->$node_key : (string)$element->$node_key;
 
-                if ( ! empty($value)) {
-
-                    $xmlWriter->startElement($node_value);
-                    $xmlWriter->writeCdata($value);
-                    $xmlWriter->endElement();
-
-                }
+                $xmlWriter->startElement($node_value);
+                $xmlWriter->writeCdata($value);
+                $xmlWriter->endElement();
 
             }
 
