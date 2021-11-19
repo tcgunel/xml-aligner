@@ -12,9 +12,9 @@ Only tags and their contents are being processed. Attributes will be ignored.
 Uses XMLWriter, XMLReader, fopen for memory efficiency. SimpleXML for parsing small parts of XML tags. 
 
 ## Requirements
-| PHP    | Package |
-|--------|---------|
-| ^7.2.5 | v1.0.0  |
+| PHP       | Package |
+|-----------|---------|
+| ^7.3-^8.0 | v1.0.0  |
 
 ## Kurulum
 
