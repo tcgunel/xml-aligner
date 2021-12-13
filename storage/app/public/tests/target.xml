@@ -13,5 +13,44 @@
             <picture>http://www.reserbayi.com/urun_resimleri.php?w=500&amp;urun_kodu=4-A320M-F&amp;sorted=4</picture>
             <picture>http://www.reserbayi.com/urun_resimleri.php?w=500&amp;urun_kodu=4-A320M-F&amp;sorted=5</picture>
         </pictures>
+        <stock>1</stock>
+        <price>52.00</price>
+        <currency>USD</currency>
+        <tax>18</tax>
+        <variants>
+            <variant>
+                <spek>1000</spek>
+                <test>Test</test>
+                <name>Numara</name>
+                <value>40</value>
+                <stock>10</stock>
+                <price>50.00</price>
+                <pictures/>
+            </variant>
+            <variant>
+                <spek>2000</spek>
+                <test>Test</test>
+                <name>Numara</name>
+                <value>41</value>
+                <stock>15</stock>
+                <price>55.00</price>
+                <pictures>
+                    <picture>http://www.reserbayi.com/urun_resimleri.php?w=500&amp;urun_kodu=4-A320M-F</picture>
+                    <picture>http://www.reserbayi.com/urun_resimleri.php?w=500&amp;urun_kodu=4-A320M-F&amp;sorted=2</picture>
+                    <picture>http://www.reserbayi.com/urun_resimleri.php?w=500&amp;urun_kodu=4-A320M-F&amp;sorted=3</picture>
+                    <picture>http://www.reserbayi.com/urun_resimleri.php?w=500&amp;urun_kodu=4-A320M-F&amp;sorted=4</picture>
+                    <picture>http://www.reserbayi.com/urun_resimleri.php?w=500&amp;urun_kodu=4-A320M-F&amp;sorted=5</picture>
+                </pictures>
+            </variant>
+            <variant>
+                <spek>3000</spek>
+                <test>Test</test>
+                <name>Numara</name>
+                <value>42</value>
+                <stock>20</stock>
+                <price>60.00</price>
+                <pictures/>
+            </variant>
+        </variants>
     </item>
 </items>

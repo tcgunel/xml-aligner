@@ -203,40 +203,51 @@ class XmlAligner
         SimpleXMLElement $element,
         array $data,
         XMLWriter $xmlWriter,
-        SimpleXMLElement $value_pointer = null
-    ) {
+        SimpleXMLElement $value_pointer = null,
+        ?int $counter = -1
+    )
+    {
         $node_key   = array_key_first($data);
         $node_value = $data[$node_key];
 
         if (is_array($node_value) && array_key_exists('xmlNode', $node_value)) {
 
-            $xmlWriter->startElement($node_value["xmlNode"]);
+            $xmlWriter->startElement(str_replace('[]', '', $node_value["xmlNode"]));
 
         }
 
-        if (isset($node_value['values']) && ! empty($node_value['values'])) {
+        if (isset($node_value['values']) && !empty($node_value['values'])) {
 
-            foreach ($node_value['values'] as $key => $value) {
+            if ($value_pointer) {
+
+                $value_pointer = $value_pointer->$node_key;
+
+            } else {
 
                 $value_pointer = $element->$node_key;
 
-                self::createXmlFromDataArray($element, [$key => $value], $xmlWriter, $value_pointer);
-
             }
 
-        } else {
+            if (isset($node_value["xmlNode"]) && strpos($node_value["xmlNode"], '[]') !== false) {
 
-            if (strpos($node_value, '[]') !== false) {
+                foreach ($value_pointer as $point) {
 
-                if (isset($value_pointer->$node_key) && count($value_pointer->$node_key)){
+                    foreach ($node_value['values'] as $key => $value) {
 
-                    $clean_node_name = str_replace('[]', '', $node_value);
+                        foreach ($point->$key as $eek) {
 
-                    foreach ($value_pointer->$node_key as $ea) {
 
-                        $xmlWriter->startElement($clean_node_name);
-                        $xmlWriter->writeCdata((string)$ea);
-                        $xmlWriter->endElement();
+                            if (empty(trim((string)$eek))) {
+
+                                self::createXmlFromDataArray($eek, [$key => $value], $xmlWriter, $eek, -1);
+
+                            } else {
+
+                                self::createXmlFromDataArray($element, [$key => $value], $xmlWriter, $value_pointer, ++$counter);
+
+                            }
+
+                        }
 
                     }
 
@@ -244,13 +255,45 @@ class XmlAligner
 
             } else {
 
-                $value = $value_pointer ? (string)$value_pointer->$node_key : (string)$element->$node_key;
+                foreach ($node_value['values'] as $key => $value) {
 
-                $xmlWriter->startElement($node_value);
-                $xmlWriter->writeCdata($value);
-                $xmlWriter->endElement();
+                    self::createXmlFromDataArray($element, [$key => $value], $xmlWriter, $value_pointer, -1);
+
+                }
 
             }
+
+        } else {
+
+            if ($counter > -1) {
+
+                $value = (string)$value_pointer->$node_key[$counter];
+
+            } else {
+
+                // check if contains attributes
+                $this->extractAttributes($node_key, $clear_node_key, $attributes);
+
+                $this->extractAttributes($node_value, $clear_target_node_key, $target_attributes);
+
+                if (!empty($clear_node_key)){
+
+                    $node_key = $clear_node_key;
+
+                }
+
+                if (!empty($clear_target_node_key)){
+
+                    $node_value = $clear_target_node_key;
+
+                }
+
+                $value = $value_pointer ? (string)$value_pointer->$node_key : (string)$element->$node_key;
+            }
+
+            $xmlWriter->startElement($node_value);
+            $xmlWriter->writeCdata($value);
+            $xmlWriter->endElement();
 
         }
 
@@ -258,6 +301,31 @@ class XmlAligner
 
             $xmlWriter->endElement();
 
+        }
+
+        if (isset($attributes) && !empty($attributes) && isset($target_attributes) && !empty($target_attributes)){
+
+            foreach ($target_attributes as $key => $target_attribute){
+
+                $xmlWriter->startElement($target_attribute);
+                $xmlWriter->writeCdata((string)$element->$node_key[$attributes[$key]]);
+                $xmlWriter->endElement();
+
+            }
+
+        }
+    }
+
+    public function extractAttributes($source, &$value, &$attributes = [])
+    {
+        preg_match_all('/\[(\w+)]/', $source, $matches);
+        if (!empty($matches[1])) {
+            foreach ($matches[1] as $key => $match) {
+                $attributes[] = $match;
+            }
+
+            // clear attributes
+            $value = preg_replace('/\[\w+]/', "", $source);
         }
     }
 
