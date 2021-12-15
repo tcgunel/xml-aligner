@@ -39,30 +39,9 @@ $format = [
             "urunid"   => "code",
             "detay"    => "description",
             "resimler" => [ // Child with children,
-                "xmlNode" => "pictures[]", // If name has [] in it, then this tag is a repeater. 
+                "xmlNode" => "pictures",
                 "values"  => [
-                    "resim" => "picture",
-                ],
-            ],
-            "varyantlar"  => [
-                "xmlNode" => "variants[]",
-                "values"  => [
-                    "varyant" => [
-                        "xmlNode" => "variant",
-                        "values"  => [
-                            "spec[name]" => "spek[test]", // Converts source attributes to nodes.
-                            "tip"   => "name",
-                            "deger" => "value",
-                            "stok"  => "stock",
-                            "fiyat" => "price",
-                            "resimler"    => [
-                                "xmlNode" => "pictures[]",
-                                "values"  => [
-                                    "resim" => "picture",
-                                ],
-                            ],
-                        ],
-                    ],
+                    "resim" => "picture[]", // If name has [] in it, then this tag is a repeater. 
                 ],
             ],
         ],

@@ -19,37 +19,5 @@
         <para_birimi>USD</para_birimi>
         <kdv>18</kdv>
         <stok>1</stok>
-        <varyantlar>
-            <varyant>
-                <spec name="Test">1000</spec>
-                <tip>Numara</tip>
-                <deger>40</deger>
-                <stok>10</stok>
-                <fiyat>50.00</fiyat>
-                <resimler/>
-            </varyant>
-            <varyant>
-                <spec name="Test">2000</spec>
-                <tip>Numara</tip>
-                <deger>41</deger>
-                <stok>15</stok>
-                <fiyat>55.00</fiyat>
-                <resimler>
-                    <resim>http://www.reserbayi.com/urun_resimleri.php?w=500&amp;urun_kodu=4-A320M-F</resim>
-                    <resim>http://www.reserbayi.com/urun_resimleri.php?w=500&amp;urun_kodu=4-A320M-F&amp;sorted=2</resim>
-                    <resim>http://www.reserbayi.com/urun_resimleri.php?w=500&amp;urun_kodu=4-A320M-F&amp;sorted=3</resim>
-                    <resim>http://www.reserbayi.com/urun_resimleri.php?w=500&amp;urun_kodu=4-A320M-F&amp;sorted=4</resim>
-                    <resim>http://www.reserbayi.com/urun_resimleri.php?w=500&amp;urun_kodu=4-A320M-F&amp;sorted=5</resim>
-                </resimler>
-            </varyant>
-            <varyant>
-                <spec name="Test">3000</spec>
-                <tip>Numara</tip>
-                <deger>42</deger>
-                <stok>20</stok>
-                <fiyat>60.00</fiyat>
-                <resimler/>
-            </varyant>
-        </varyantlar>
     </urun>
 </urunler>

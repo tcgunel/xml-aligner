@@ -44,39 +44,14 @@ class XmlAlignerTest extends TestCase
             "urun" => [
                 "xmlNode" => "item",
                 "values"  => [
-                    "kategori"    => "categoryTree",
-                    "urunadi"     => "name",
-                    "urunid"      => "code",
-                    "detay"       => "description",
-                    "resimler"    => [
-                        "xmlNode" => "pictures[]",
+                    "kategori" => "categoryTree",
+                    "urunadi"  => "name",
+                    "urunid"   => "code",
+                    "detay"    => "description",
+                    "resimler" => [
+                        "xmlNode" => "pictures",
                         "values"  => [
-                            "resim" => "picture",
-                        ],
-                    ],
-                    "stok"        => "stock",
-                    "fiyat"       => "price",
-                    "para_birimi" => "currency",
-                    "kdv"         => "tax",
-                    "varyantlar"  => [
-                        "xmlNode" => "variants[]",
-                        "values"  => [
-                            "varyant" => [
-                                "xmlNode" => "variant",
-                                "values"  => [
-                                    "spec[name]" => "spek[test]",
-                                    "tip"        => "name",
-                                    "deger"      => "value",
-                                    "stok"       => "stock",
-                                    "fiyat"      => "price",
-                                    "resimler"   => [
-                                        "xmlNode" => "pictures[]",
-                                        "values"  => [
-                                            "resim" => "picture",
-                                        ],
-                                    ],
-                                ],
-                            ],
+                            "resim" => "picture[]",
                         ],
                     ],
                 ],
@@ -87,7 +62,7 @@ class XmlAlignerTest extends TestCase
 
         $xml_file = __DIR__ . '/../../storage/app/public/tests/source.xml';
 
-        if (!Storage::disk("local")->exists("public/tests/")) {
+        if ( ! Storage::disk("local")->exists("public/tests/")) {
 
             Storage::disk("local")->makeDirectory("public/tests");
 
@@ -102,8 +77,8 @@ class XmlAlignerTest extends TestCase
             ->convert();
 
         $this->assertXmlFileEqualsXmlFile(
-            __DIR__ . '/../../storage/app/public/tests/target.xml',
-            $output_path
+            $output_path,
+            __DIR__ . '/../../storage/app/public/tests/target.xml'
         );
         $this->assertTrue($result);
     }
